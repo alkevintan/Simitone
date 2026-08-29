@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Simitone.DesktopGL</RootNamespace>
+    <AssemblyName>Simitone</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.4" />
+    <PackageReference Include="StbImageSharp" Version="2.30.16" />
+  </ItemGroup>
+
+  <!-- Share the platform-neutral locators with Simitone.Windows rather than copying them.
+       WindowsLocator and SteamGameFinder are left out: they need Microsoft.Win32.Registry
+       and a kernel32 P/Invoke. -->
+  <ItemGroup>
+    <Compile Include="..\Simitone.Windows\GameLocator\ILocator.cs" Link="GameLocator\ILocator.cs" />
+    <Compile Include="..\Simitone.Windows\GameLocator\MacOSLocator.cs" Link="GameLocator\MacOSLocator.cs" />
+    <Compile Include="..\Simitone.Windows\GameLocator\LinuxLocator.cs" Link="GameLocator\LinuxLocator.cs" />
+  </ItemGroup>
+
+  <!-- Mirrors Simitone.Windows, minus FSO.IDE (net9.0-windows + WinForms), so the
+       -ide / Volcanic editor flag is not available here. -->
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\FreeSO\Other\libs\MSDFData\MSDFData.csproj" />
+    <ProjectReference Include="..\..\..\FreeSO\TSOClient\FSO.SimAntics.JIT\FSO.SimAntics.JIT.csproj" />
+    <ProjectReference Include="..\..\..\FreeSO\TSOClient\FSO.UI\FSO.UI.csproj" />
+    <ProjectReference Include="..\..\..\FreeSO\TSOClient\tso.client\FSO.Client.csproj" />
+    <ProjectReference Include="..\..\..\FreeSO\TSOClient\tso.common\FSO.Common.csproj" />
+    <ProjectReference Include="..\..\..\FreeSO\TSOClient\tso.files\FSO.Files.csproj" />
+    <ProjectReference Include="..\..\..\FreeSO\TSOClient\tso.simantics\FSO.SimAntics.csproj" />
+    <ProjectReference Include="..\..\..\FreeSO\TSOClient\tso.world\FSO.LotView.csproj" />
+    <ProjectReference Include="..\Simitone.Client\Simitone.Client.csproj" />
+  </ItemGroup>
+
+</Project>
